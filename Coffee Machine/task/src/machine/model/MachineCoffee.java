@@ -1,11 +1,16 @@
 package machine.model;
 
+import machine.model.enumerated.Operation;
+import machine.model.enumerated.Option;
+
 public class MachineCoffee {
     int coffee;
     int milk;
     int watter;
     int cup;
     double money;
+    Operation operation;
+    Option option;
 
     public int getCoffee() {
         return coffee;
@@ -39,11 +44,19 @@ public class MachineCoffee {
         this.cup = cup;
     }
 
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     public double getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
-        this.money = money;
+    public void setOperation(Operation operation) {
+        this.operation = operation;
+    }
+
+    public void setOption(Option option) {
+        this.option = option;
     }
 }
