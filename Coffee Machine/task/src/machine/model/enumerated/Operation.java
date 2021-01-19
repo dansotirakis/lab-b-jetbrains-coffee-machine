@@ -11,4 +11,9 @@ public enum Operation {
         this.name = name;
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
