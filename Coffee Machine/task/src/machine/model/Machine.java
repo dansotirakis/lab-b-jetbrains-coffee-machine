@@ -9,7 +9,7 @@ public class Machine {
     int milk;
     int watter;
     int cup;
-    double money;
+    int money;
     Operation operation;
     Option option;
 
@@ -45,11 +45,11 @@ public class Machine {
         this.cup = cup;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     }
 
@@ -69,23 +69,19 @@ public class Machine {
         return option;
     }
 
-    public boolean isBuy(Machine session) {
-        return session.operation.getName().equals(Operation.BUY.getName());
-    }
-
     public void prepare(Machine session) {
         session.setCoffee(session.getCoffee() - session.getOption().getCoffee());
         session.setMilk(session.getMilk() - session.getOption().getMilk());
         session.setWatter(session.getWatter() - session.getOption().getWatter());
-        session.setMoney(session.getMoney() + session.getOption().getPrice());
+        session.setMoney((int) (session.getMoney() + session.getOption().getPrice()));
+        session.setCup(session.getCup() - 1);
     }
 
-    public boolean validate(Machine session) throws MachineException {
-        if(session.getCoffee() > session.getOption().getCoffee()
-                || session.getMilk() > session.getOption().getMilk()
-                || session.getWatter() > session.getOption().getWatter()){
+    public void validate(Machine session) throws MachineException {
+        if(session.getCoffee() < session.getOption().getCoffee()
+                || session.getMilk() < session.getOption().getMilk()
+                || session.getWatter() < session.getOption().getWatter()){
             throw new MachineException();
         }
-        return Boolean.TRUE;
     }
 }
