@@ -2,7 +2,8 @@ package machine.model.enumerated;
 public enum Option {
     ESPRESSO(4, 1, 250, 16, 0),
     LATTE(7,2,350,20,75),
-    CAPPUCCINO(6, 3,200,12,100);
+    CAPPUCCINO(6, 3,200,12,100),
+    BACK(0,0, 0,0, 0);
 
     int price;
     int id;

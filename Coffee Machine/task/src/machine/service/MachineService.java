@@ -1,7 +1,9 @@
 package machine.service;
 
+import machine.model.DTO.ValidatorDTO;
 import machine.model.Machine;
 import machine.repository.MachineRepository;
+
 import java.util.Scanner;
 
 public class MachineService {
@@ -15,22 +17,21 @@ public class MachineService {
     MachineRepository repository = new MachineRepository();
 
     public void buy(Machine session) {
-        try {
-            session.validate(session);
+        ValidatorDTO validate = session.validate();
+        if(validate.isError()){
             repository.pay(session);
-        } catch (Exception e){
-            System.out.println("Error : " + e.getMessage()+"\nCausa : " + e.getCause());
         }
+        System.out.println(validate.getMessage());
     }
 
-    public Machine take(Machine session) {
+    public void take(Machine session) {
         System.out.println("I gave you $" + session.getMoney());
         session.setMoney(0);
-        return session;
     }
 
-    public Machine fill(Machine session) {
+    public void fill(Machine session) {
 
+        System.out.println();
         System.out.println(ITEM_1);
         session.setWatter(in.nextInt()+ session.getWatter());
 
@@ -43,6 +44,5 @@ public class MachineService {
         System.out.println(ITEM_4);
         session.setCup(in.nextInt()+ session.getCup());
 
-        return session;
     }
 }

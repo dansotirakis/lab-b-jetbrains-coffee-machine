@@ -1,6 +1,6 @@
 package machine.model;
 
-import machine.exception.MachineException;
+import machine.model.DTO.ValidatorDTO;
 import machine.model.enumerated.Operation;
 import machine.model.enumerated.Option;
 
@@ -12,6 +12,8 @@ public class Machine {
     int money;
     Operation operation;
     Option option;
+
+    private static final String ERROR = "Sorry, not enough ";
 
     public int getCoffee() {
         return coffee;
@@ -69,19 +71,32 @@ public class Machine {
         return option;
     }
 
-    public void prepare(Machine session) {
-        session.setCoffee(session.getCoffee() - session.getOption().getCoffee());
-        session.setMilk(session.getMilk() - session.getOption().getMilk());
-        session.setWatter(session.getWatter() - session.getOption().getWatter());
-        session.setMoney((int) (session.getMoney() + session.getOption().getPrice()));
-        session.setCup(session.getCup() - 1);
+    public void prepare() {
+        this.setCoffee(this.getCoffee() - this.getOption().getCoffee());
+        this.setMilk(this.getMilk() - this.getOption().getMilk());
+        this.setWatter(this.getWatter() - this.getOption().getWatter());
+        this.setMoney((int) (this.getMoney() + this.getOption().getPrice()));
+        this.setCup(this.getCup() - 1);
     }
 
-    public void validate(Machine session) throws MachineException {
-        if(session.getCoffee() < session.getOption().getCoffee()
-                || session.getMilk() < session.getOption().getMilk()
-                || session.getWatter() < session.getOption().getWatter()){
-            throw new MachineException();
+    public ValidatorDTO validate() {
+        ValidatorDTO validator = new ValidatorDTO();
+        if (this.getCoffee() < this.getOption().getCoffee()) {
+            validator.setMessage(ERROR + "coffee!");
+            validator.setError(Boolean.FALSE);
+        } else if (this.getMilk() < this.getOption().getMilk()) {
+            validator.setMessage(ERROR + "milk!");
+            validator.setError(Boolean.FALSE);
+        } else if (this.getWatter() < this.getOption().getWatter()) {
+            validator.setMessage(ERROR + "watter!");
+            validator.setError(Boolean.FALSE);
+        } else if (this.getCup() < 1) {
+            validator.setMessage(ERROR + "cups!");
+            validator.setError(Boolean.FALSE);
+        } else {
+            validator.setMessage("I have enough resources, making you a coffee!");
+            validator.setError(Boolean.TRUE);
         }
+        return validator;
     }
 }
