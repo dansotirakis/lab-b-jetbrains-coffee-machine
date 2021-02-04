@@ -17,6 +17,6 @@ public class CoffeeMachine {
         session.setCoffee(120);
         session.setCup(9);
 
-        controller.getStatus(session);
+        controller.getOperation(session);
     }
 }

@@ -1,2 +1,20 @@
+machine/repository/MachineRepository.java
+ machine.repository.MachineRepository
+machine/model/enumerated/Supply.java
+ machine.model.enumerated.Supply
+machine/model/enumerated/Operation.java
+ machine.model.enumerated.Operation
+machine/model/Machine.java
+ machine.model.Machine
+machine/exception/MachineException.java
+ machine.exception.MachineException
+machine/service/MachineService.java
+ machine.service.MachineService
+machine/model/enumerated/Option.java
+ machine.model.enumerated.Option
+machine/model/DTO/ValidatorDTO.java
+ machine.model.DTO.ValidatorDTO
 machine/CoffeeMachine.java
  machine.CoffeeMachine
+machine/controller/MachineController.java
+ machine.controller.MachineController
